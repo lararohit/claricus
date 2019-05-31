@@ -1,0 +1,238 @@
+<script type="text/javascript">
+    function validateForm()
+    {
+        var a=document.forms["Form"]["first_name"].value;
+        var b=document.forms["Form"]["last_name"].value;
+        var c=document.forms["Form"]["ol_first_name"].value;
+        var d=document.forms["Form"]["ol_last_name"].value;
+        if (a!="" && b!=""){return true; }
+        if (c!="" && d!="") { return true; }     
+        alert("Please Fill either the first name and last name (english) or first name and last name (other language) ");				
+        return false;				
+     }     
+</script>
+<div align="center">
+
+<h1></h1><br>
+<form action="claricus_demo_submit" method="post" name="Form" onsubmit="return validateForm()" enctype="multipart/form-data" class="form-style-9">
+
+<table style="width:70%">
+    <tr>
+    <td>
+	<table style="width:100%;border:none;cellpadding:10" > 
+	<tr><td style="text-align:left;padding: 10px;width:40%">First name: (English): </td><td style="text-align:left;padding: 10px;"><input type="text" name="first_name" id="first_name" class="field-style field-split align-left" value=""> </td></tr>
+  <tr><td style="text-align:left;padding: 10px;">Middle name: (English) </td><td style="text-align:left;padding: 10px;">   <input type="text" name="middle_name" value=""></td></tr>
+  <tr><td style="text-align:left;padding: 10px;width:40%">Last name: (English): </td><td style="text-align:left;padding: 10px;"><input type="text" name="last_name" id="last_name" class="field-style field-split align-left" value=""> </td></tr>
+  <tr><td style="text-align:left;padding: 10px;width:40%">First name: (Other language): </td><td style="text-align:left;padding: 10px;"><input type="text" name="ol_first_name" id="ol_first_name" class="field-style field-split align-left" value=""> </td></tr>
+  <tr><td style="text-align:left;padding: 10px;width:40%">Last name: (Other language): </td><td style="text-align:left;padding: 10px;"><input type="text" name="ol_last_name" id="ol_last_name" class="field-style field-split align-left" value=""> </td></tr>
+  
+  <tr><td style="text-align:left;padding: 10px;">Address 1: </td><td style="text-align:left;padding: 10px;">    <input type="text" name="address_1" value="" required>&nbsp;&nbsp;( * )</td></tr>
+  <tr><td style="text-align:left;padding: 10px;">Address 2: </td><td style="text-align:left;padding: 10px;">   <input type="text" name="address_2" value=""></td></tr>
+  <tr><td style="text-align:left;padding: 10px;">City: </td><td style="text-align:left;padding: 10px;">   <input type="text" name="city" value="" required>&nbsp;&nbsp;( * )</td></tr>
+  <tr><td style="text-align:left;padding: 10px;">State: </td><td style="text-align:left;padding: 10px;">   <input type="text" name="state" value=""></td></tr>
+  <tr><td style="text-align:left;padding: 10px;">Postal Code:  </td><td style="text-align:left;padding: 10px;"> <input type="text" name="postal_code" value=""></td></tr>
+  </table>  
+  </td>
+    <td style="text-align:left;padding: 10px;">
+	<table style="width:100%;border:none;cellpadding:10" >
+	<tr><td style="text-align:left;padding: 10px;">Purpose of action: </td><td style="text-align:left;padding: 10px;"> 
+  <select name="purpose_of_action" required>
+  <option value="" disabled selected>Select your option</option>
+  {{#each lkp_master_purpose}}
+  <option value='{{code}}'>{{description}}</option>
+   {{/each}}
+  </select>&nbsp;&nbsp;( * ) </td></tr>
+  
+  <tr><td style="text-align:left;padding: 10px;">Planned Investment per month:  </td><td style="text-align:left;padding: 10px;">
+  <select name="planned_investment_per_month" required>
+  <option value="" disabled selected>Select your option</option>
+  {{#each lkp_master_planned_investment}}
+  <option value='{{code}}'>{{description}}</option>
+   {{/each}}
+  </select>&nbsp;&nbsp;( * ) </td></tr>
+  
+  <tr><td style="text-align:left;padding: 10px;">Channel Mode: </td><td style="text-align:left;padding: 10px;">  
+  <select name="channel_mode" required>
+  <option value="" disabled selected>Select your option</option>
+  {{#each lkp_master_channel}}
+  <option value='{{code}}'>{{description}}</option>
+   {{/each}}
+  </select>&nbsp;&nbsp;( * ) </td></tr>
+  
+  <tr><td style="text-align:left;padding: 10px;">Product Type: </td><td style="text-align:left;padding: 10px;">  
+  <select name="product_type" required>
+  <option value="" disabled selected>Select your option</option>
+  {{#each lkp_master_product}}
+  <option value='{{code}}'>{{description}}</option>
+   {{/each}}
+  </select>&nbsp;&nbsp;( * ) </td></tr>  
+  <tr><td style="text-align:left;padding: 10px;">Email:  </td><td style="text-align:left;padding: 10px;"> <input type="text" name="email" value="" required>&nbsp;&nbsp;( * )</td></tr>
+  <tr><td style="text-align:left;padding: 10px;">Contact Number: </td>
+  <td style="text-align:left;padding: 10px;"> 
+  Country Code<select name="contact_number_code" required>
+  <option value="" disabled selected>Select your option</option>
+  {{#each country}}
+  <option value='{{code}}'>{{name}} + {{contact_number_ISD_Code}} </option>
+   {{/each}}
+  </select>&nbsp;&nbsp;( * )
+  Contact Number<input type="text" name="contact_number" value="" size="15" required>&nbsp;&nbsp;( * )
+  
+  </td></tr>  
+  <tr><td style="text-align:left;padding: 10px;">Date of Birth: </td><td style="text-align:left;padding: 10px;"> <input type="date" name="date_of_birth" required>  (dd/mm/yyyy)&nbsp;&nbsp;( * )</td></tr>
+  </table>
+  </td>    
+  </tr>
+  <tr>
+    <td style="text-align:left;padding: 10px;">
+	<table style="width:100%;border:none;cellpadding:10" >
+	<tr><td style="text-align:left;padding: 10px;">
+	Gender: </td><td style="text-align:left;padding: 10px;"> 
+  <select name="gender" required>
+  <option value="" disabled selected>Select your option</option>
+  {{#each lkp_master_gender}}
+  <option value='{{code}}'>{{description}}</option>
+   {{/each}}
+  </select>&nbsp;&nbsp;( * ) </td></tr> 
+ <tr><td style="text-align:left;padding: 10px;">
+  Nationality:  </td><td style="text-align:left;padding: 10px;">
+  <select name="nationality" required>
+  <option value="" disabled selected>Select your option</option>
+    {{#each country}}
+  <option value='{{code}}'>{{name}}</option>
+  {{/each}}
+  </select>&nbsp;&nbsp;( * ) </td></tr> 
+    <tr><td style="text-align:left;padding: 10px;">
+  Country of Residence:  </td><td style="text-align:left;padding: 10px;">
+  <select name="country_of_residence" id="country_of_residence" required>
+  <option value="" disabled selected>Select your option</option>
+    {{#each country}}
+  <option value='{{code}}'>{{name}}</option>
+   {{/each}}
+  </select>&nbsp;&nbsp;( * ) <br><br>
+  <div class="toshow" style="display:none" id = 'tax_id_number2'>
+  Enter the Tax id number :-
+  <input type="text" name="tax_id_number" id="tax_id_number" value="">
+  </div><br>
+  <div class="toshow" style="display:none" id = 'tax_id_msg'>
+  </div>
+  <div class="toshow" style="display:none">
+  <select name="tax_id_number1" id="tax_id_number1">
+  <option value="0" selected>0</option>
+    {{#each country}}
+	  {{#equal is_tax_id_required 1}} 
+  <option value='{{code}}' >{{tax_notes}}</option>
+  {{/equal}}
+   {{/each}}
+  </select>&nbsp;&nbsp;
+  </div>
+  
+  </td></tr>
+  <tr><td style="text-align:left;padding: 10px;">
+  Passport / NRIC ID: </td><td style="text-align:left;padding: 10px;"> <input type="text" name="id_number" value="" required></td></tr>
+  <tr><td style="text-align:left;padding: 10px;">
+  ID Type: </td><td style="text-align:left;padding: 10px;">  
+  <select name="id_type" required>
+  <option value="" disabled selected>Select your option</option>
+   {{#each lkp_master_id_type}}
+  <option value='{{code}}'>{{description}}</option>
+   {{/each}}
+  </select>&nbsp;&nbsp;( * ) </td></tr>
+  <tr><td style="text-align:left;padding: 10px;width:25%">
+  ID Expiry: </td><td style="text-align:left;padding: 10px;"> <input type="date" value="2018-17-02" name="id_expiry_date" required >  (dd/mm/yyyy)&nbsp;&nbsp;( * )
+  </td></tr>
+  </table>
+  </td>
+    <td style="text-align:left;padding: 10px;">
+  <table style="width:100%;border:none;cellpadding:10" >  
+ <tr><td style="text-align:left;padding: 10px;">
+  Work Type: </td><td style="text-align:left;padding: 10px;"> 
+  <select name="work_type" id="work_type" required>
+  <option value="" disabled selected>Select your option</option>
+   {{#each work_type}}
+  <option value='{{id}}'>{{name}}</option>
+  {{/each}}
+  </select>&nbsp;&nbsp;( * ) </td></tr>
+
+<tr><td style="text-align:left;padding: 10px;">
+  Work Industry:  </td><td style="text-align:left;padding: 10px;">
+  <select name="industry" id="industry" required>
+  <option value="" disabled selected>Select your option</option>
+  {{#each work_industry}}
+  <option value='{{id}}'>{{name}}</option>
+  {{/each}}
+  </select>&nbsp;&nbsp;( * ) </td></tr>  
+  </table>
+  <table style="width:100%">
+   <tr>
+    <td style="text-align:left;padding: 10px;">Front Photo: <br>(only jpg or png files)&nbsp;&nbsp;( * ) </td>
+    <td style="text-align:left;padding: 10px;"><input type="file" name="id_photo_front_name" required></td> 
+  </tr>
+  <tr>
+    <td style="text-align:left;padding: 10px;">Selfie Photo: <br>(only jpg or png files)&nbsp;&nbsp;( * )  </td>
+    <td style="text-align:left;padding: 10px;"><input type="file" name="id_photo_selfie_name" required></td> 
+  </tr>
+  <tr>
+    <td style="text-align:left;padding: 10px;">Utility Bill Photo: <br>(only jpg or png or pdf files)&nbsp;&nbsp;( * )  </td>
+    <td style="text-align:left;padding: 10px;"><input type="file" name="id_photo_utility_name" required></td> 
+  </tr>
+</table>
+
+</td>
+  </tr>
+</table>
+<br><br><br><br>  
+  <input type="submit" value="Submit"><br><br><br><br><br><br><br><br>
+</form>
+</div>
+<script>
+$('#work_type').change(function() {
+    if( $(this).val() == '4' || $(this).val() == '5' || $(this).val() == '6' || $(this).val() == '7' ) {    	
+		$("#industry").val('22');
+	    $("#industry").hide();
+		$('#industry').prop('disabled', true);
+    } else {       
+        //$("#industry").val("");
+		$('#industry').prop('disabled', false);
+		$("#industry").show();
+    }
+});
+</script>
+<script>
+$('#country_of_residence').change(function() {        	
+		$("#tax_id_number1").val($(this).val()).change();
+		//alert ($(this).val())
+		//alert ($('#tax_id_number1').val())
+		if ($('#tax_id_number1').val() == null)		
+		{$("#tax_id_number1").hide();
+		 $("#tax_id_number2").hide();
+		}
+		else 
+		{$("#tax_id_number1").hide();
+		 $("#tax_id_number2").show();
+		}
+		
+		
+	    //$("#industry").hide();
+		//$('#industry').prop('disabled', true);   
+});
+</script>
+<script>
+$('#tax_id_number1').change(function() {
+// alert('test');
+    var x = $('#tax_id_number1 option:selected').text();
+	//var x = $("#myselect option:selected" ).text();
+	// alert(x);
+	if (x == '') {$("tax_id_number2").hide(); $('#tax_id_msg').hide();}
+	else 
+	{
+	$("tax_id_number2").show();
+    //$('#tax_id_number').val(x).change();
+    $('#tax_id_msg').text(x);
+    $('#tax_id_msg').show();	}
+    //$("input").val("A").change();	
+		//$("#tax_id_number").val($(this).val());
+		//$("#tax_id_number:text").val("Glenn Quagmire");
+	    //$("#industry").hide();
+		//$('#industry').prop('disabled', true);   
+});
+</script>
